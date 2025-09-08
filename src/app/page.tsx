@@ -11,6 +11,7 @@ import {
 } from "framer-motion";
 export default function Home() {
   const [activeSection, setActiveSection] = useState("");
+  const [scrollNumber, setScrollNumber] = useState(0);
 
   // Xử lý click navigation
   const scrollToSection = (sectionId: string) => {
@@ -28,7 +29,7 @@ export default function Home() {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            console.log("entry: ", entry.target.id);
+            // console.log("entry: ", entry.target.id);
             setActiveSection(entry.target.id);
           }
         });
@@ -76,10 +77,29 @@ export default function Home() {
   // const springY = useSpring(heroY, { stiffness: 100, damping: 30 });
   // const springScale = useSpring(heroScale, { stiffness: 100, damping: 30 });
 
+  const [hasInIntro, setHasInIntro] = useState(true);
+  const hasScrolled = useRef(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!hasScrolled.current) {
+        hasScrolled.current = true
+        setHasInIntro(false)
+        console.log("scroll lần đầu")
+      }
+    }
+    window.addEventListener('scroll', handleScroll)
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    } 
+  }, [])
+
+
   const { scrollY } = useScroll();
   useMotionValueEvent(scrollY, "change", (latest) => {
-    console.log("Page scroll: ", latest);
   });
+
+
 
   const textScale = useTransform(scrollYProgress, [0, 0.2], [1, 10]);
   const textOpacity = useTransform(scrollYProgress, [0.1, 0.3], [1, 0]);
@@ -90,6 +110,8 @@ export default function Home() {
 
   const springY = useSpring(heroY, { stiffness: 20, damping: 30 });
   const springScale = useSpring(heroScale, { stiffness: 20, damping: 30 });
+
+
 
   return (
     <div className="font-sans">
@@ -111,11 +133,10 @@ export default function Home() {
                 <button
                   key={section}
                   onClick={() => scrollToSection(section)}
-                  className={`px-3 py-2 rounded-md transition-colors ${
-                    activeSection === section
-                      ? "bg-blue-500 text-white"
-                      : "text-gray-600 hover:text-blue-500 hover:bg-gray-100"
-                  }`}
+                  className={`px-3 py-2 rounded-md transition-colors ${activeSection === section
+                    ? "bg-blue-500 text-white"
+                    : "text-gray-600 hover:text-blue-500 hover:bg-gray-100"
+                    }`}
                 >
                   {section.charAt(0).toUpperCase() + section.slice(1)}
                 </button>
@@ -134,7 +155,7 @@ export default function Home() {
       <div className="">
         <main>
           <motion.section
-          transition={{duration: 5, ease: "linear"}}
+            transition={{ duration: 5, ease: "linear" }}
             id="hero"
             className="relative min-h-screen w-full overflow-hidden"
             ref={containerRef}
@@ -146,9 +167,10 @@ export default function Home() {
                 scale: textScale,
                 opacity: textOpacity,
               }}
+              transition={{ duration: 4, ease: "linear" }}
             >
               <h1 className="text-[4rem] font-bold text-white p-8 rounded-lg">
-                T.B AR DESIGN
+                TB.HAND
               </h1>
             </motion.div>
 
