@@ -17,7 +17,7 @@ const Hook = () => {
     useMotionValueEvent(scrollY, "change", (latest) => {
         console.log("ScrollY: ", latest);
     });
-    
+
 
 
     return (
@@ -26,7 +26,7 @@ const Hook = () => {
                 <motion.h1>Section 1</motion.h1>
             </motion.div>
 
-            <motion.div className="h-screen  relative flex justify-center items-center bg-green-200">
+            <motion.div className="h-screen  relative flex justify-center items-center bg-[#DAFDBA]">
                 {/* Progress bar cố định */}
                 <motion.div
                     style={{
@@ -42,13 +42,25 @@ const Hook = () => {
                     id="scroll-indicator"
                 />
 
-                <Content  size={scrollYProgress}  />
+                <Content size={scrollYProgress} />
             </motion.div>
 
             <motion.div
-                className="h-screen flex justify-center items-center"
+                className="h-screen flex justify-end items-center "
             >
-                <motion.h1>Section 3</motion.h1>
+                <motion.div
+                    style={{
+                        width: 100,
+                        height: 100,
+                        backgroundColor: "#9FC131",
+                    }}
+                >
+                    <p className="text-[100px] text-shadow-[2px_4px_4px_rgb(0_0_0_/_0.25)]">A</p>
+                </motion.div>
+            </motion.div>
+
+             <motion.div className="h-screen flex justify-center items-center bg-[#9AEBA3]">
+                <motion.h1>Section 4</motion.h1>
             </motion.div>
         </div>
     );
