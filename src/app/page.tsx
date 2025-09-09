@@ -97,9 +97,8 @@ export default function Home() {
 
   const { scrollY } = useScroll();
   useMotionValueEvent(scrollY, "change", (latest) => {
+    console.log("latest: ", latest)
   });
-
-
 
   const textScale = useTransform(scrollYProgress, [0, 0.2], [1, 10]);
   const textOpacity = useTransform(scrollYProgress, [0.1, 0.3], [1, 0]);
