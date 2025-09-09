@@ -1,6 +1,7 @@
 "use client";
 
 import Content from "@/components/Content";
+import FlyCard from "@/components/FlyCard";
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import React, { useRef } from "react";
 
@@ -17,6 +18,7 @@ const Hook = () => {
     useMotionValueEvent(scrollY, "change", (latest) => {
         console.log("ScrollY: ", latest);
     });
+
 
 
 
@@ -41,25 +43,17 @@ const Hook = () => {
                     }}
                     id="scroll-indicator"
                 />
-
                 <Content size={scrollYProgress} />
             </motion.div>
 
             <motion.div
-                className="h-screen flex justify-end items-center "
+                className="h-screen flex justify-end items-center"
             >
-                <motion.div
-                    style={{
-                        width: 100,
-                        height: 100,
-                        backgroundColor: "#9FC131",
-                    }}
-                >
-                    <p className="text-[100px] text-shadow-[2px_4px_4px_rgb(0_0_0_/_0.25)]">A</p>
-                </motion.div>
+                <FlyCard parameter={scrollYProgress}></FlyCard>
+
             </motion.div>
 
-             <motion.div className="h-screen flex justify-center items-center bg-[#9AEBA3]">
+            <motion.div className="h-screen flex justify-center items-center bg-[#9AEBA3]">
                 <motion.h1>Section 4</motion.h1>
             </motion.div>
         </div>

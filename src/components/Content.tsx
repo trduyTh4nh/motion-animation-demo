@@ -7,6 +7,7 @@ function Content({ size }: { size: MotionValue<number> }) {
     useMotionValueEvent(size, "change", (latest) => {
         setScrollYProgress(latest)
         setScrollNumber(size)
+        console.log("size: ", size)
         console.log("stateSize: ", Math.round(latest * 100) / 100)
     })
     const view2Opacity = useTransform(

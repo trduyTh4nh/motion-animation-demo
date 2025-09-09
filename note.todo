@@ -1,0 +1,20 @@
+// xoay
+A: 
+-- rotate sau đó di chuyển qua trái khi scroll xuống
+
+-> transform: rotateY(-223deg);
+-> transform: translateX(-172px);
+
+B: 
+
+-- rotate sau đó di chuyển qua trái khi scroll xuống
+
+-> transform: rotate(-223deg);
+-> transform: translateX(-172px); 
+
+C: 
+
+-- zic zac lên xuống di chuyển qua trái khi scroll xuống
+
+transform: translateY(16px) translateX(23px); 
+transform: translateY(-16px) translateX(-23px); 
